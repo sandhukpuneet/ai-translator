@@ -1,0 +1,10 @@
+services:
+  translator:
+    build: .
+    container_name: gemini-app
+    # This automatically loads your .env file
+    env_file:
+      - .env
+    # These two lines replace the "-it" flag for interactive CLI apps
+    stdin_open: true
+    tty: true
