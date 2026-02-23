@@ -1,0 +1,11 @@
+# Ignore the secret keys
+.env
+
+# Ignore Python cache and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+env/
+
+# Ignore Mac system files
+.DS_Store
