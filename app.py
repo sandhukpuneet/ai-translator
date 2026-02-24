@@ -10,7 +10,7 @@ client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 def translate_text(text, target_language="French"):
     # Using gemini-2.0-flash for speed and cost-efficiency
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="gemini-2.5-flash",
         contents=f"Translate the following text to {target_language}: {text}"
     )
     return response.text
