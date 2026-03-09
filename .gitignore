@@ -9,3 +9,6 @@ env/
 
 # Ignore Mac system files
 .DS_Store
+
+# Ignore Node / frontend dependencies
+node_modules/

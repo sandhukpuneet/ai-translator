@@ -16,8 +16,13 @@ def translate_text(text, target_language="French"):
     return response.text
 
 if __name__ == "__main__":
-    user_input = input("Enter text to translate: ")
-    if user_input.strip():
-        print(f"Result: {translate_text(user_input)}")
-    else:
-        print("Please enter some text!")
+    print("AI Translator - Enter text to translate (or 'quit' to exit)\n")
+    while True:
+        user_input = input("Enter text to translate: ").strip()
+        if not user_input:
+            print("Please enter some text!\n")
+            continue
+        if user_input.lower() in ("quit", "exit", "q"):
+            print("Goodbye!")
+            break
+        print(f"Result: {translate_text(user_input)}\n")
