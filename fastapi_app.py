@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app import translate_text
@@ -30,8 +33,8 @@ class TranslateResponse(BaseModel):
     result: str
 
 
-@app.get("/")
-async def root():
+@app.get("/health")
+async def health():
     return {"status": "ok", "message": "AI Translator FastAPI backend is running."}
 
 
@@ -51,6 +54,16 @@ async def translate(req: TranslateRequest) -> TranslateResponse:
         ) from exc
 
     return TranslateResponse(result=result)
+
+
+frontend_dist = Path(__file__).parent / "frontend" / "dist"
+
+if frontend_dist.exists():
+    app.mount(
+        "/",
+        StaticFiles(directory=str(frontend_dist), html=True),
+        name="frontend",
+    )
 
 
 if __name__ == "__main__":
